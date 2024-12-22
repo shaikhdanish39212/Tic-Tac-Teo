@@ -1,9 +1,11 @@
 console.log("Welcome to Tic Tac Toe");
+
 let music = new Audio("music.mp3");
 let audioTurn = new Audio("brass-fanfare-with-timpani-and-winchimes-reverberated-146260.mp3");
 
 let turn = "X";
 let isGameOver = false;
+let isFirstTurn = true;  // New flag to track the first turn
 
 // Function to change the turn
 const changeTurn = () => {
@@ -34,7 +36,7 @@ const checkWin = () => {
             isGameOver = true;
             document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "200px";
 
-            // Play sound only when X or O wins
+            // Play sound only when X or O wins (not on regular turns)
             audioTurn.play();
         }
     });
@@ -48,7 +50,8 @@ Array.from(boxes).forEach(element => {
         if (boxtext.innerText === '' && !isGameOver) {
             boxtext.innerText = turn;
             turn = changeTurn();
-            checkWin();
+            checkWin();  // Check if there's a win after the move
+
             if (!isGameOver) {
                 document.querySelector(".info").innerText = "Turn for " + turn;
             }
@@ -61,11 +64,11 @@ let reset = document.querySelector('#reset');
 reset.addEventListener('click', () => {
     let boxtexts = document.querySelectorAll('.boxtext');
     Array.from(boxtexts).forEach(element => {
-        element.innerText = ""
+        element.innerText = "";
     });
     turn = "X";
     isGameOver = false;
-    
+    isFirstTurn = true;  // Reset flag when game is reset
     document.querySelector(".info").innerText = "Turn for " + turn;
     document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "0px";
 });
