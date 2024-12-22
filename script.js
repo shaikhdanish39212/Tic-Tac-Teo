@@ -65,7 +65,7 @@ reset.addEventListener('click', () => {
     });
     turn = "X";
     isGameOver = false;
-    isFirstTurn = true;  // Reset flag when game is reset
+    
     document.querySelector(".info").innerText = "Turn for " + turn;
     document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "0px";
 });
