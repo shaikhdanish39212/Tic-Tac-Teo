@@ -4,7 +4,6 @@ let audioTurn = new Audio("brass-fanfare-with-timpani-and-winchimes-reverberated
 
 let turn = "X";
 let isGameOver = false;
-let isFirstTurn = true;  // New flag to track the first turn
 
 // Function to change the turn
 const changeTurn = () => {
@@ -48,11 +47,6 @@ Array.from(boxes).forEach(element => {
     element.addEventListener('click', () => {
         if (boxtext.innerText === '' && !isGameOver) {
             boxtext.innerText = turn;
-            if (!isFirstTurn) {  // Only play the sound if it's not the first turn
-                audioTurn.play();
-            } else {
-                isFirstTurn = false;  // Set flag to false after the first turn
-            }
             turn = changeTurn();
             checkWin();
             if (!isGameOver) {
