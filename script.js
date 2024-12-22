@@ -38,16 +38,16 @@ const checkWin = () => {
 
 // Game Logic
 let boxes = document.querySelectorAll(".box");
-Array.from(boxes).forEach(element => {
-    let boxtext = element.querySelector(".boxtext");
+Array.from(boxes).forEach((element, index) => {
+    let boxtext = element.querySelector(".boxtext");  // This will select the inner div where X or O will be displayed
     element.addEventListener('click', () => {
-        if (boxtext.innerText === '' && !isGameOver) {
-            boxtext.innerText = turn;
-            turn = changeTurn();
+        if (boxtext.innerText === '' && !isGameOver) {  // Only update if the box is empty
+            boxtext.innerText = turn;  // Set the text to X or 0
+            turn = changeTurn();  // Switch the turn
             checkWin();  // Check if there's a win after the move
 
             if (!isGameOver) {
-                document.querySelector(".info").innerText = "Turn for " + turn;
+                document.querySelector(".info").innerText = "Turn for " + turn;  // Display the current turn
             }
         }
     })
@@ -58,11 +58,11 @@ let reset = document.querySelector('#reset');
 reset.addEventListener('click', () => {
     let boxtexts = document.querySelectorAll('.boxtext');
     Array.from(boxtexts).forEach(element => {
-        element.innerText = "";
+        element.innerText = "";  // Clear the text from each box
     });
     turn = "X";
     isGameOver = false;
     isFirstTurn = true;  // Reset flag when game is reset
     document.querySelector(".info").innerText = "Turn for " + turn;
-    document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "0px";
+    document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "0px";  // Reset the image if any
 });
