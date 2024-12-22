@@ -5,6 +5,7 @@ let gameover = new Audio("game-over-arcade-6435.mp3");
 
 let turn = "X";
 let isGameOver = false;
+let isFirstTurn = true;  // New flag to track the first turn
 
 // Function to change the turn
 const changeTurn = () => {
@@ -43,8 +44,12 @@ Array.from(boxes).forEach(element => {
     element.addEventListener('click', () => {
         if (boxtext.innerText === '' && !isGameOver) {
             boxtext.innerText = turn;
+            if (!isFirstTurn) {  // Only play the sound if it's not the first turn
+                audioTurn.play();
+            } else {
+                isFirstTurn = false;  // Set flag to false after the first turn
+            }
             turn = changeTurn();
-            audioTurn.play();
             checkWin();
             if (!isGameOver) {
                 document.querySelector(".info").innerText = "Turn for " + turn;
@@ -62,6 +67,7 @@ reset.addEventListener('click', () => {
     });
     turn = "X";
     isGameOver = false;
+    isFirstTurn = true;  // Reset flag when game is reset
     document.querySelector(".info").innerText = "Turn for " + turn;
     document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "0px";
 });
