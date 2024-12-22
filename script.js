@@ -31,7 +31,7 @@ const checkWin = () => {
             document.querySelector('.info').innerText = boxtexts[e[0]].innerText + " Won!";
             isGameOver = true;
             document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "200px";
-            gameover.play();
+            gameover.play();  // Only plays the sound when there's a win.
         }
     });
 }
