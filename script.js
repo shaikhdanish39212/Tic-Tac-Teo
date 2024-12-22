@@ -1,8 +1,5 @@
 console.log("Welcome to Tic Tac Toe");
 
-// Adding an audio object for the win sound (replace with your own sound file)
-let audioWin = new Audio("let audioTurn = new Audio("brass-fanfare-with-timpani-and-winchimes-reverberated-146260.mp3"); // Add the path to your win sound file here
-
 let turn = "X";
 let isGameOver = false;
 let isFirstTurn = true;  // New flag to track the first turn
@@ -35,9 +32,6 @@ const checkWin = () => {
             document.querySelector('.info').innerText = winner + " Won!";
             isGameOver = true;
             document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "200px";
-
-            // Play the win sound
-            audioWin.play();  // Play sound when X or O wins
         }
     });
 }
